@@ -1,0 +1,37 @@
+# =============================================================================
+# Bender Package Manifest for custom_alu IP
+# File: Bender.yml
+# Place this at the ROOT of your custom IP repository
+# =============================================================================
+
+package:
+  name: custom_alu
+  authors:
+    - "Your Name <your.email@example.com>"
+
+dependencies:
+  # CROC platform dependency - adjust the path or git URL as needed
+  # Option A: Local path (when developing locally alongside CROC)
+  # croc:
+  #   path: ../croc
+
+  # Option B: Git reference (recommended for reproducibility)
+  # croc:
+  #   git: https://github.com/<your-username>/croc.git
+  #   rev: main
+
+sources:
+  # Source files listed in compile order (dependencies first)
+  - target: default
+    files:
+      - rtl/custom_alu.sv
+      - rtl/custom_alu_apb_wrapper.sv
+
+  # Simulation-only sources (testbench)
+  - target: simulation
+    files:
+      - tb/tb_custom_alu_apb.sv
+
+export_include_dirs: []
+
+frozen: false
