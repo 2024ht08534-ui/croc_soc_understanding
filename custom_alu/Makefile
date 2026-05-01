@@ -15,7 +15,7 @@ YOSYS      ?= yosys
 OPENROAD   ?= openroad
 
 RTL_FILES  = rtl/custom_alu.sv rtl/custom_alu_apb_wrapper.sv
-TB_FILE    = tb/tb_custom_alu_apb.sv
+TB_FILE    = rtl/tb/tb_custom_alu_apb.sv
 TOP_TB     = tb_custom_alu_apb
 
 .PHONY: all compile sim synth pnr clean
