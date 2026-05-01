@@ -24,7 +24,7 @@ A 32-bit ALU peripheral designed to integrate with the [CROC](https://github.com
 
 ```bash
 # Clone
-git clone https://github.com/2024ht08534-ui/croc_soc_understanding.git
+git clone https://github.com/<your-username>/custom_alu.git
 cd custom_alu
 
 # Lint check

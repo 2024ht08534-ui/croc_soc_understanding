@@ -1,0 +1,18 @@
+# Build artifacts
+build/
+synth_out/
+
+# Simulation outputs
+*.vcd
+*.log
+
+# Object / compiled files
+*.o
+*.a
+*.d
+
+# Temporary files
+*.tmp
+
+# Windows metadata junk
+*Zone.Identifier*

@@ -27,18 +27,18 @@ module custom_alu #(
 );
 
     // Operation encoding
-    typedef enum logic [3:0] {
-        ALU_ADD = 4'h0,
-        ALU_SUB = 4'h1,
-        ALU_AND = 4'h2,
-        ALU_OR  = 4'h3,
-        ALU_XOR = 4'h4,
-        ALU_SHL = 4'h5,
-        ALU_SHR = 4'h6,
-        ALU_SRA = 4'h7,  // Arithmetic right shift
-        ALU_NOR = 4'h8,
-        ALU_XNOR= 4'h9
-    } alu_op_e;
+   // typedef enum logic [3:0] {
+   //     ALU_ADD = 4'h0,
+   //     ALU_SUB = 4'h1,
+   //     ALU_AND = 4'h2,
+   //     ALU_OR  = 4'h3,
+   //     ALU_XOR = 4'h4,
+   //     ALU_SHL = 4'h5,
+   //     ALU_SHR = 4'h6,
+   //     ALU_SRA = 4'h7,  // Arithmetic right shift
+   //     ALU_NOR = 4'h8,
+   //     ALU_XNOR= 4'h9
+   // } alu_op_e;
 
     // Internal signals
     logic [DATA_WIDTH:0]   result_extended;  // Extra bit for carry
@@ -48,17 +48,17 @@ module custom_alu #(
     // Combinational ALU logic
     always_comb begin : alu_operation
         result_extended = '0;
-        case (alu_op_e'(op_sel_i))
-            ALU_ADD: result_extended = {1'b0, operand_a_i} + {1'b0, operand_b_i};
-            ALU_SUB: result_extended = {1'b0, operand_a_i} - {1'b0, operand_b_i};
-            ALU_AND: result_extended = {1'b0, operand_a_i  & operand_b_i};
-            ALU_OR:  result_extended = {1'b0, operand_a_i  | operand_b_i};
-            ALU_XOR: result_extended = {1'b0, operand_a_i  ^ operand_b_i};
-            ALU_SHL: result_extended = {1'b0, operand_a_i << operand_b_i[4:0]};
-            ALU_SHR: result_extended = {1'b0, operand_a_i >> operand_b_i[4:0]};
-            ALU_SRA: result_extended = {1'b0, $signed(operand_a_i) >>> operand_b_i[4:0]};
-            ALU_NOR: result_extended = {1'b0, ~(operand_a_i | operand_b_i)};
-            ALU_XNOR:result_extended = {1'b0, ~(operand_a_i ^ operand_b_i)};
+        case (op_sel_i)
+            4'h0: result_extended = {1'b0, operand_a_i} + {1'b0, operand_b_i};  // ADD
+            4'h1: result_extended = {1'b0, operand_a_i} - {1'b0, operand_b_i};  // SUB
+            4'h2: result_extended = {1'b0, operand_a_i  & operand_b_i};          // AND
+            4'h3: result_extended = {1'b0, operand_a_i  | operand_b_i};          // OR
+            4'h4: result_extended = {1'b0, operand_a_i  ^ operand_b_i};          // XOR
+            4'h5: result_extended = {1'b0, operand_a_i << operand_b_i[4:0]};     // SHL
+            4'h6: result_extended = {1'b0, operand_a_i >> operand_b_i[4:0]};     // SHR
+            4'h7: result_extended = {1'b0, $signed(operand_a_i) >>> operand_b_i[4:0]}; // SRA
+            4'h8: result_extended = {1'b0, ~(operand_a_i | operand_b_i)};        // NOR
+            4'h9: result_extended = {1'b0, ~(operand_a_i ^ operand_b_i)};        // XNOR
             default: result_extended = '0;
         endcase
     end
