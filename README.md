@@ -111,4 +111,4 @@ custom_alu/
 
 ## Block Diagram
 
-![Custom_Alu PNR output](custom_alu.jpg)
+![Custom_Alu PNR output](Custom_alu.jpg)
