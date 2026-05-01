@@ -109,6 +109,6 @@ custom_alu/
     └── custom_alu.sdc              # Timing constraints
 ```
 
-## Block Diagram
+## PNR Output
 
 ![Custom_Alu PNR output](Custom_alu.jpg)
