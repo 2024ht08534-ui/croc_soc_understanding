@@ -108,3 +108,7 @@ custom_alu/
     ├── openroad_flow.tcl           # OpenROAD script
     └── custom_alu.sdc              # Timing constraints
 ```
+
+## Block Diagram
+
+![Custom_Alu PNR output](custom_alu.jpg)
