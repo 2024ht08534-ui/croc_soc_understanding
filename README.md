@@ -37,6 +37,7 @@ make sim
 make synth
 
 # Full PnR (requires OpenROAD + PDK)
+#run condo activate openroad
 make pnr
 ```
 
