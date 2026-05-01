@@ -1,0 +1,45 @@
+##############################################################################
+# Yosys Synthesis Script for custom_alu
+# File: synth/synth_custom_alu.ys
+# Usage:  yosys synth_custom_alu.ys
+# Target: Nangate45 standard cell library (open/free)
+#         Can be swapped for sky130 or any other open PDK
+##############################################################################
+
+# ---- Read design ----
+read_verilog -sv ../rtl/custom_alu.sv
+read_verilog -sv ../rtl/custom_alu_apb_wrapper.sv
+
+# ---- Elaborate top module ----
+hierarchy -check -top custom_alu_apb_wrapper
+
+# ---- Generic synthesis ----
+synth -top custom_alu_apb_wrapper -flatten
+
+# ---- Technology mapping ----
+# Point to your PDK cell library. Examples below:
+# Nangate45 (open):
+# dfflibmap -liberty /path/to/nangate45/NangateOpenCellLibrary_typical.lib
+# abc -liberty /path/to/nangate45/NangateOpenCellLibrary_typical.lib
+
+# Sky130 (open):
+# dfflibmap -liberty /path/to/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib
+# abc -liberty /path/to/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# ---- Fallback: generic mapping (for quick estimation without PDK) ----
+dfflibmap -prepare
+techmap
+opt -fast
+
+# ---- Reports ----
+stat
+check
+
+# ---- Write outputs ----
+write_verilog -noattr synth_out/custom_alu_netlist.v
+write_json    synth_out/custom_alu_netlist.json
+
+# ---- Timing estimate (optional, needs abc with timing) ----
+# tee -o synth_out/timing_report.txt stat
+
+echo "Synthesis complete. Check synth_out/"
