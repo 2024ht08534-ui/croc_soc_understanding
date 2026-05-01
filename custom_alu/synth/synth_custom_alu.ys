@@ -26,10 +26,9 @@ synth -top custom_alu_apb_wrapper -flatten
 # dfflibmap -liberty /path/to/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib
 # abc -liberty /path/to/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib
 
-# ---- Fallback: generic mapping (for quick estimation without PDK) ----
-dfflibmap -prepare
-techmap
-opt -fast
+# ---- IHP SG13G2 technology mapping ----
+dfflibmap -liberty /home/gokul/croc/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_typ_1p20V_25C.lib
+abc -liberty /home/gokul/croc/ihp13/pdk/ihp-sg13g2/libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_typ_1p20V_25C.lib
 
 # ---- Reports ----
 stat
@@ -42,4 +41,4 @@ write_json    synth_out/custom_alu_netlist.json
 # ---- Timing estimate (optional, needs abc with timing) ----
 # tee -o synth_out/timing_report.txt stat
 
-echo "Synthesis complete. Check synth_out/"
+

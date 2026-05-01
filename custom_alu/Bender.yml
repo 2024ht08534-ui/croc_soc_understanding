@@ -21,9 +21,7 @@ dependencies:
   #   rev: main
 
 sources:
-  # Source files listed in compile order (dependencies first)
-  - target: default
-    files:
+  - files:
       - rtl/custom_alu.sv
       - rtl/custom_alu_apb_wrapper.sv
 
