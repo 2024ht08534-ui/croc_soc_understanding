@@ -108,7 +108,3 @@ custom_alu/
     ├── openroad_flow.tcl           # OpenROAD script
     └── custom_alu.sdc              # Timing constraints
 ```
-
-## License
-
-MIT
